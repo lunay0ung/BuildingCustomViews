@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CustomView1</string>
+    <string name="app_name">BuildingCustomViews</string>
     <string name="fan_control">Fan Control</string>
     <string name="fan_off">off</string>
     <string name="fan_low">1</string>
@@ -7,4 +7,9 @@
     <string name="fan_high">3</string>
     <string name="change">Change</string>
     <string name="reset">Reset</string>
+
+    <string name="canvasContentDescription">
+       My Canvas is a simple line drawing page.
+   Drag your fingers to draw. Rotate the phone to clear.</string>
+
 </resources>
