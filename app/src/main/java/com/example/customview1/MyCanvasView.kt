@@ -1,10 +1,7 @@
 package com.example.customview1
 
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.Canvas
-import android.graphics.Paint
-import android.graphics.Path
+import android.graphics.*
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewConfiguration
@@ -24,6 +21,8 @@ class MyCanvasView(context: Context) : View(context) {
     private lateinit var extraBitmap: Bitmap
     //캔버스 배경색
     private val backgroundColor = ResourcesCompat.getColor(resources, R.color.colorBackground, null)
+
+    private lateinit var frame: Rect //캔버스 테두리 그리기
 
 
     /**
@@ -71,6 +70,10 @@ class MyCanvasView(context: Context) : View(context) {
         extraBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888) //각 색상을 4byte로 저장(권장되는 설정)
         extraCanvas = Canvas(extraBitmap)
         extraCanvas.drawColor(backgroundColor)
+
+        // Calculate a rectangular frame around the picture.
+        val inset = 40
+        frame = Rect(inset, inset, width - inset, height - inset)
     }
 
     /**
@@ -83,6 +86,8 @@ class MyCanvasView(context: Context) : View(context) {
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         canvas.drawBitmap(extraBitmap, 0f, 0f, null)
+        // Draw a frame around the canvas.
+        canvas.drawRect(frame, paint)
     }
 
     /**
