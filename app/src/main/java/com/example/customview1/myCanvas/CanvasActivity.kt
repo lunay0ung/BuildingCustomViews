@@ -1,8 +1,9 @@
-package com.example.customview1
+package com.example.customview1.myCanvas
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View.SYSTEM_UI_FLAG_FULLSCREEN
+import com.example.customview1.R
 
 class CanvasActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

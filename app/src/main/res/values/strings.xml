@@ -12,4 +12,8 @@
        My Canvas is a simple line drawing page.
    Drag your fingers to draw. Rotate the phone to clear.</string>
 
+    <string name="clipping">Clipping</string>
+    <string name="translated">translated text</string>
+    <string name="skewed">"Skewed and "</string>
+
 </resources>

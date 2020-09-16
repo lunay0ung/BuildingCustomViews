@@ -1,4 +1,4 @@
-package com.example.customview1
+package com.example.customview1.myCanvas
 
 import android.content.Context
 import android.graphics.*
@@ -6,6 +6,7 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewConfiguration
 import androidx.core.content.res.ResourcesCompat
+import com.example.customview1.R
 
 
 //In order to draw, you need a Paint object that specifies how things are styled when drawn, and a Path that specifies what is being drawn.
@@ -15,12 +16,14 @@ private const val STROKE_WIDTH = 12f // has to be float
 class MyCanvasView(context: Context) : View(context) {
     private var path = Path()
 
-    private val drawColor = ResourcesCompat.getColor(resources, R.color.colorPaint, null)
+    private val drawColor = ResourcesCompat.getColor(resources,
+        R.color.colorPaint, null)
     //이전에 그린 것을 캐싱하기 위한 객체
     private lateinit var extraCanvas: Canvas
     private lateinit var extraBitmap: Bitmap
     //캔버스 배경색
-    private val backgroundColor = ResourcesCompat.getColor(resources, R.color.colorBackground, null)
+    private val backgroundColor = ResourcesCompat.getColor(resources,
+        R.color.colorBackground, null)
 
     private lateinit var frame: Rect //캔버스 테두리 그리기
 
@@ -59,7 +62,8 @@ class MyCanvasView(context: Context) : View(context) {
         style = Paint.Style.STROKE // default: FILL
         strokeJoin = Paint.Join.ROUND // default: MITER, strokeJoin of Paint.Join specifies how lines and curve segments join on a stroked path.
         strokeCap = Paint.Cap.ROUND // default: BUTT, sets the shape of the end of the line to be a cap.
-        strokeWidth = STROKE_WIDTH // default: Hairline-width (really thin)
+        strokeWidth =
+            STROKE_WIDTH // default: Hairline-width (really thin)
     }
 
     //스크린 면적이 바뀔 때 안드로이드 시스템이 호출는 콜백
