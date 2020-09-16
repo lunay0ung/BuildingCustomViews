@@ -3,16 +3,37 @@ package com.example.customview1
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
+import android.graphics.Paint
+import android.graphics.Path
 import android.view.View
 import androidx.core.content.res.ResourcesCompat
 
-class MyCanvasView(context: Context) : View(context) {
 
+//In order to draw, you need a Paint object that specifies how things are styled when drawn, and a Path that specifies what is being drawn.
+//화면에 뭔가 그리기 위해서는 어떻게 그려질지 표현하기 위한 페인트 오브젝트와 뭐가 그려지고 있는지 특정하는 path가 필요하
+private const val STROKE_WIDTH = 12f // has to be float
+
+class MyCanvasView(context: Context) : View(context) {
+    private var path = Path()
+    
+    private val drawColor = ResourcesCompat.getColor(resources, R.color.colorPaint, null)
     //이전에 그린 것을 캐싱하기 위한 객체
     private lateinit var extraCanvas: Canvas
     private lateinit var extraBitmap: Bitmap
     //캔버스 배경색
     private val backgroundColor = ResourcesCompat.getColor(resources, R.color.colorBackground, null)
+
+    private val paint = Paint().apply {
+        color = drawColor
+        // Smooths out edges of what is drawn without affecting shape.
+        isAntiAlias = true
+        isDither = true //when true, affects how colors with higher-precision than the device are down-sampled.
+                    // For example, dithering is the most common means of reducing the color range of images down to the 256 (or fewer) colors.
+        style = Paint.Style.STROKE // default: FILL
+        strokeJoin = Paint.Join.ROUND // default: MITER, strokeJoin of Paint.Join specifies how lines and curve segments join on a stroked path.
+        strokeCap = Paint.Cap.ROUND // default: BUTT, sets the shape of the end of the line to be a cap.
+        strokeWidth = STROKE_WIDTH // default: Hairline-width (really thin)
+    }
 
     //스크린 면적이 바뀔 때 안드로이드 시스템이 호출는 콜백
     override fun onSizeChanged(width: Int, height: Int, oldWidth: Int, oldHeight: Int) {
