@@ -1,6 +1,8 @@
 package com.example.customview1.clippingCanvas
 
 import android.content.Context
+import android.graphics.Canvas
+import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Path
 import android.util.AttributeSet
@@ -54,4 +56,72 @@ class ClippedView @JvmOverloads constructor(
     private val rowFour = rowThree + rectInset + clipRectBottom
     private val textRow = rowFour + (1.5f * clipRectBottom)
 
+    /**
+     * In onDraw(), you call methods to draw seven different clipped rectangles as shown in the app screenshot below.
+     * The rectangles are all drawn in the same way; the only difference is their defined clipping regions and location on the screen.
+     * onDraw()에서 7개의 다른 사각형을 그릴 메소드를 호출한다
+     * 이 사각형들은 모두 같은 방식으로 그려지는데, 유일한 차이점은 clipping 지점과 화면 상 위치이다.
+     * */
+    override fun onDraw(canvas: Canvas) {
+        super.onDraw(canvas)
+        drawBackAndUnclippedRectangle(canvas)
+        drawDifferenceClippingExample(canvas)
+        drawCircularClippingExample(canvas)
+        drawIntersectionClippingExample(canvas)
+        drawCombinedClippingExample(canvas)
+        drawRoundedRectangleClippingExample(canvas)
+        drawOutsideClippingExample(canvas)
+        drawSkewedTextExample(canvas)
+        drawTranslatedTextExample(canvas)
+        // drawQuickRejectExample(canvas)
+    }
+    private fun drawClippedRectangle(canvas: Canvas) {
+        canvas.clipRect(
+            clipRectLeft,clipRectTop,
+            clipRectRight,clipRectBottom
+        )
+        canvas.drawColor(Color.WHITE)
+
+        paint.color = Color.RED
+        canvas.drawLine( //사각형 내부에 빨간 대각선을 그린
+            clipRectLeft,clipRectTop,
+            clipRectRight,clipRectBottom,paint
+        )
+
+        //사각형 내부 오른쪽 위 모서리에 텍스트를 배치한다
+        paint.color = Color.BLUE
+        // Align the RIGHT side of the text with the origin.
+        paint.textSize = textSize
+        paint.textAlign = Paint.Align.RIGHT
+        canvas.drawText(
+            context.getString(R.string.clipping),
+            clipRectRight,textOffset,paint
+        )
+    }
+
+    private fun drawBackAndUnclippedRectangle(canvas: Canvas){
+        canvas.drawColor(Color.GRAY)
+        canvas.save()
+        canvas.translate(columnOne,rowOne)
+        drawClippedRectangle(canvas)
+        canvas.restore()
+    }
+    private fun drawDifferenceClippingExample(canvas: Canvas){
+    }
+    private fun drawCircularClippingExample(canvas: Canvas){
+    }
+    private fun drawIntersectionClippingExample(canvas: Canvas){
+    }
+    private fun drawCombinedClippingExample(canvas: Canvas){
+    }
+    private fun drawRoundedRectangleClippingExample(canvas: Canvas){
+    }
+    private fun drawOutsideClippingExample(canvas: Canvas){
+    }
+    private fun drawTranslatedTextExample(canvas: Canvas){
+    }
+    private fun drawSkewedTextExample(canvas: Canvas){
+    }
+    private fun drawQuickRejectExample(canvas: Canvas){
+    }
 }
