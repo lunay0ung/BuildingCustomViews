@@ -77,7 +77,7 @@ class ClippedView @JvmOverloads constructor(
      *  When you use View classes provided by the Android system, the system clips views for you to minimize overdraw.
      *  When you use custom View classes and override the onDraw() method, clipping what you draw becomes your responsibility.
      *  안드로이드 시스템에서 제공하는 View 클래스를 이용하면, 시스템 상에서 clip view의 overdraw를 최소화해준다.
-     *  그런데 custome view 클래스와 onDraw 메소드를 오버라이드 해서 사용하면 당신이 그리는 것을 clipping하는 것은 당신의 책임이다. 
+     *  그런데 custome view 클래스와 onDraw 메소드를 오버라이드 해서 사용하면 당신이 그리는 것을 clipping하는 것은 당신의 책임이다.
      * */
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
@@ -228,11 +228,6 @@ class ClippedView @JvmOverloads constructor(
         canvas.save()
         canvas.translate(columnTwo,rowThree)
         path.rewind()
-        /**
-         * The addRoundRect() function takes a rectangle, values for the x and y values of the corner radius,
-         * and the direction to wind the round-rectangle's contour.
-         * Path.Direction specifies how closed shapes (e.g. rects, ovals) are oriented when they are added to a path
-         * */
         path.addRoundRect(  //addRoundRect는 직사각형 객체와 모서리 반에 대한 x, y값, 둥근 사각형의 윤곽을 감쌀 direction값을 받는다.
             rectF,clipRectRight / 4,
             clipRectRight / 4, Path.Direction.CCW //Path.Direction은 rects, ovals와 같은 shape이 path에 추가되었을 때 어떤 방향으로 놓일지 특정하는 값이다
