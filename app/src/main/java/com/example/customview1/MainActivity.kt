@@ -18,5 +18,9 @@ class MainActivity : AppCompatActivity() {
         buttonClipping.setOnClickListener {
             startActivity(Intent(this, ClippingActivity::class.java))
         }
+
+        buttonRoundRect.setOnClickListener {
+            startActivity(Intent(this, RoundRectActivity::class.java))
+        }
     }
 }
